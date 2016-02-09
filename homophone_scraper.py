@@ -6,7 +6,7 @@ from selenium import webdriver
 
 def getMaxPageNumber(bsSource):
     # Pagnination keeps track of the page numbers
-    pagination = bs.find('ul', {"class" : "pagination"})
+    pagination = bsSource.find('ul', {"class" : "pagination"})
     paginationList = pagination.findAll('li')
 
     # Get second to last one because last one is next page
@@ -20,11 +20,13 @@ def getAllHomophonesFromLetter(browser, letter):
         url = "http://www.homophone.com/search?page=" + str(pageNumber) + \
          "&q=" + str(letter)
         browser.get(url)
+
+        # Default lxml because idc about the parser
         bs = BeautifulSoup(browser.page_source, "lxml")
 
         # If its the first page, try to find the max page number
         if pageNumber == 1:
-            maxPageNumber = getMaxPageNumber 
+            maxPageNumber = getMaxPageNumber(bs)
 
         # If its past the last page, stop
         if pageNumber == maxPageNumber + 1:
@@ -57,7 +59,7 @@ def getHomophonesFromWebpage():
     return homophones
 
 def main():
-    getHomophonesFromWebpage()
+    print getHomophonesFromWebpage()
     return 0
 
 if __name__ == "__main__":
