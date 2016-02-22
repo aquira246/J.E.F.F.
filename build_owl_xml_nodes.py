@@ -3,6 +3,7 @@ from definitions import createSyns, wordCollection
 import ujson
 import sys
 
+POSTable = {"n": "Noun", "v": "Verb", "a": "Adjective"}
 objectByLabel = {}
 
 def getWordObj(word):
@@ -26,7 +27,7 @@ def getWordObj(word):
             wordObj["synonyms"] = list(set(itertools.chain(hypernyms, hyponyms)))
 
         #add to our collection
-        objectByLabel[word] = wordObj
+        objectByLabel[label] = wordObj
 
     return wordObj
 
@@ -42,8 +43,19 @@ for word, wordObj in objectByLabel.items():
     wordObj["homophones"] = list(wordObj["homophones"])
 
 #dump JSON
-with open("puns.json", "w") as output:
-    ujson.dump(objectByLabel, output, ensure_ascii=False)
+with open("puns.json", "w") as outputFile:
+    ujson.dump(objectByLabel, outputFile, ensure_ascii=False)
 
 #dump OWL XML here
+output ="\n".join(("""
+        <!-- http://allyourpunsarebelongto.us/puns.owl#{label} -->
+
+        <owl:NamedIndividual rdf:about="http://allyourpunsarebelongto.us/puns.owl#{label}">
+            <rdf:type rdf:resource="http://allyourpunsarebelongto.us/puns.owl#{pos}"/>
+            <Definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">{definition}</Definition>
+            <RawText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">{raw_text}</RawText>
+        </owl:NamedIndividual>""".format(label=word, pos=POSTable.get(wordObj["pos"], "Word"),
+                definition=wordObj["definition"], raw_text=wordObj["raw_text"])
+        for word, wordObj in objectByLabel.items()))
+print(output)
 
