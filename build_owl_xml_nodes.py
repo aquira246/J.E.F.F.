@@ -34,8 +34,8 @@ with open("homophones.csv", "r") as homoFile:
         homoGroup = (word for word in line.split(",") if word)
         homoObjGroup = (getWordObj(homo_word) for homo_word in homoGroup)
         for homoA, homoB in itertools.combinations(homoObjGroup, 2):
-            homoA["homophones"].append(homoB[label])
-            homoB["homophones"].append(homoA[label])
+            homoA["homophones"].append(homoB["label"])
+            homoB["homophones"].append(homoA["label"])
 
 #dump JSON
 with open("puns.json", "w") as output:
