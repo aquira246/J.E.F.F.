@@ -11,7 +11,7 @@ def getWordObj(word):
     if label not in objectByLabel:
         wordObj["raw_text"] = word
         wordObj["label"] = label
-        wordObj["homophones"] = []
+        wordObj["homophones"] = set()
         wordObj["synonyms"] = []
         wordObj["definition"] = ""
         wordObj["pos"] = ""
@@ -35,8 +35,11 @@ with open("homophones.csv", "r") as homoFile:
         homoGroup = (word.strip() for word in line.split(",") if word.strip())
         homoObjGroup = [getWordObj(homo_word) for homo_word in homoGroup]
         for homoA, homoB in itertools.combinations(homoObjGroup, 2):
-            homoA["homophones"].append(homoB["label"])
-            homoB["homophones"].append(homoA["label"])
+            homoA["homophones"].add(homoB["label"])
+            homoB["homophones"].add(homoA["label"])
+
+for word, wordObj in objectByLabel.items():
+    wordObj["homophones"] = list(wordObj["homophones"])
 
 #dump JSON
 with open("puns.json", "w") as output:
