@@ -8,9 +8,7 @@ objectByLabel = {}
 def getWordObj(word):
     label = word.replace(" ", "_")
     wordObj = objectByLabel.get(label, {})
-    if word not in objectByLabel:
-        objectByLabel[word] = wordObj
-
+    if label not in objectByLabel:
         wordObj["raw_text"] = word
         wordObj["label"] = label
         wordObj["homophones"] = []
@@ -27,12 +25,15 @@ def getWordObj(word):
             wordObj["definition"] = " | ".join(instance.definition for instance in synset)
             wordObj["synonyms"] = list(set(itertools.chain(hypernyms, hyponyms)))
 
+        #add to our collection
+        objectByLabel[word] = wordObj
+
     return wordObj
 
 with open("homophones.csv", "r") as homoFile:
     for line in homoFile:
-        homoGroup = (word for word in line.split(",") if word)
-        homoObjGroup = (getWordObj(homo_word) for homo_word in homoGroup)
+        homoGroup = (word.strip() for word in line.split(",") if word.strip())
+        homoObjGroup = [getWordObj(homo_word) for homo_word in homoGroup]
         for homoA, homoB in itertools.combinations(homoObjGroup, 2):
             homoA["homophones"].append(homoB["label"])
             homoB["homophones"].append(homoA["label"])

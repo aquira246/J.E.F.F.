@@ -44,12 +44,12 @@ def createSyns(word):
             hypernyms = []
             for h in syn.hypernyms():
                 h_name = h.name().split(".")
-                hypernyms.append( (h_name[0], h_name[1]) )
+                hypernyms.append( (h_name[0].strip(), h_name[1].strip()) )
 
             hyponyms = []
             for h in syn.hyponyms():
                 h_name = h.name().split(".")
-                hyponyms.append( (h_name[0], h_name[1]) )
+                hyponyms.append( (h_name[0].strip(), h_name[1].strip()) )
 
             ret.append(wordCollection(name, syn.pos(), hypernyms, hyponyms, syn.definition()))
 
