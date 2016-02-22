@@ -55,6 +55,6 @@ def createSyns(word):
 
     return ret
 
-printSyns(createSyns("cheese"))
+#printSyns(createSyns("cheese"))
 # createSyns("dog")
-printSyns(createSyns("rock"))
+#printSyns(createSyns("rock"))
