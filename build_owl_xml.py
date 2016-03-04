@@ -3,6 +3,7 @@ from definitions import createSyns, wordCollection
 import ujson
 import html
 import sys
+import nltk
 
 POSTable = {"n": "Noun", "v": "Verb", "a": "Adjective"}
 objectByLabel = {}
@@ -27,14 +28,24 @@ def getWordObj(word):
 
         #initialize word obj with synsets
         synset = createSyns(label)
-        hypernyms = (h[0] for h in itertools.chain.from_iterable(instance.hypernyms for instance in synset))
-        hyponyms = (h[0] for h in itertools.chain.from_iterable(instance.hyponyms for instance in synset))
         if synset:
             wordObj["pos"] = synset[0].pos
             wordObj["definition"] = html.escape(" | ".join(instance.definition for instance in synset))
+            hypernyms = (h[0] for h in itertools.chain.from_iterable(instance.hypernyms for instance in synset))
+            hyponyms = (h[0] for h in itertools.chain.from_iterable(instance.hyponyms for instance in synset))
             wordObj["synonyms"] = list(queueSynonymObjToAdd(synonym)
                                         for synonym in
                                         set(itertools.chain(hypernyms, hyponyms)))
+        else:
+            #tag the word using nltk if wordnet has no synset
+            pos = nltk.pos_tag([word])[0][1]
+            if pos.startswith('J'):
+                pos = 'a'
+            elif pos.startswith('V'):
+                pos = 'v'
+            elif pos.startswith('N'):
+                pos = 'n'
+            wordObj["pos"] = pos
 
     return wordObj
 
