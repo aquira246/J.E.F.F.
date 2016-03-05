@@ -44,8 +44,8 @@ N2 = QUERY_PREFIX + """
         ?s1 puns:RawText ?w1.
         ?s2 puns:RawText ?w2.
 
-        ?s1 puns:Definition ?d1.
-        ?s2 puns:Definition ?d2.
+        ?s1 puns:Definition ?d1. FILTER(?d1 != "")
+        ?s2 puns:Definition ?d2. FILTER(?d2 != "")
     }
     LIMIT %d
     OFFSET %d
@@ -62,8 +62,8 @@ NA = QUERY_PREFIX + """
         ?s1 puns:RawText ?w1.
         ?s2 puns:RawText ?w2.
 
-        ?s1 puns:Definition ?d1.
-        ?s2 puns:Definition ?d2.
+        ?s1 puns:Definition ?d1. FILTER(?d1 != "")
+        ?s2 puns:Definition ?d2. FILTER(?d2 != "")
     }
     LIMIT %d
     OFFSET %d
