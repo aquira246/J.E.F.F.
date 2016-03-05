@@ -47,7 +47,7 @@ N2 = QUERY_PREFIX + """
         ?s1 puns:Definition ?d1.
         ?s2 puns:Definition ?d2.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -65,7 +65,7 @@ NA = QUERY_PREFIX + """
         ?s1 puns:Definition ?d1.
         ?s2 puns:Definition ?d2.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -86,7 +86,7 @@ N2A2 = QUERY_PREFIX + """
         ?s3 puns:RawText ?w3.
         ?s4 puns:RawText ?w4.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -107,7 +107,7 @@ N2AN = QUERY_PREFIX + """
         ?s3 puns:RawText ?w3.
         ?s4 puns:RawText ?w4.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -128,7 +128,7 @@ N2V2 = QUERY_PREFIX + """
         ?s3 puns:RawText ?w3.
         ?s4 puns:RawText ?w4.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -149,7 +149,7 @@ N3A = QUERY_PREFIX + """
         ?s3 puns:RawText ?w3.
         ?s4 puns:RawText ?w4.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -170,7 +170,7 @@ N4 = QUERY_PREFIX + """
         ?s3 puns:RawText ?w3.
         ?s4 puns:RawText ?w4.
     }
-    LIMIT 10
+    LIMIT %d
     OFFSET %d
 """
 
@@ -184,6 +184,6 @@ for row in g.query(N4query % offset):
     joke1.append("What do you call a %s %s?\nA %s %s!" % (w1, w2, w3, w4))
 """
 
-def query_graph(query_string, offset=0):
-    return g.query(query_string % offset)
+def query_graph(query_string, limit=10, offset=0):
+    return g.query(query_string % (limit, offset))
 
