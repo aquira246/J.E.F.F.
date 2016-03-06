@@ -1,6 +1,6 @@
 import os, sys
 import bottle
-from ..generate_jokes import RandomJoke
+from ..generate_jokes import generateN4, generateN2V2, generateNA, generateN2
 import random
 
 CACHE_SIZE = 10
