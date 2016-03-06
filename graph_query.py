@@ -30,7 +30,7 @@ if not g:
     print("Error loading graph")
     sys.exit(-1)
 
-print("graph has %s statements." % len(g))
+#print("graph has %s statements." % len(g))
 # prints graph has 79 statements.
 
 N2 = QUERY_PREFIX + """
