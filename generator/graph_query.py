@@ -186,5 +186,5 @@ N4 = QUERY_PREFIX + """
 #use re.split("\s*[;\|]\s*", x) for splitting definitions
 
 def query_graph(query_string, limit=10, offset=0):
-    return g.query(query_string % (limit, offset))
+    return [tuple(x.replace("_", " ") for x in row) for row in g.query(query_string % (limit, offset))]
 
