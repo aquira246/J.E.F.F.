@@ -231,4 +231,4 @@ def generateJokeFile(filename="puns.txt", jokeCount=10):
 
 """MAIN"""
 if __name__ == '__main__':
-    print(randomJoke())
+    print(randomJoke().replace("_", " "))
