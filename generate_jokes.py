@@ -229,7 +229,6 @@ def generateJokeFile(filename="puns.txt", jokeCount=10):
 
     wf.close
 
-# generateJokeFile("puns.txt", 20)
-
-for x in range(10):
-    print(randomJoke() + "\n")
+"""MAIN"""
+if __name__ == '__main__':
+    print(randomJoke())
