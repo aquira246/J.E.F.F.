@@ -4,7 +4,7 @@ from generator import generateN4, generateN2V2, generateNA, generateN2
 import random
 
 app = bottle.default_app()
-app.CACHE_SIZE = 10
+app.CACHE_SIZE = 50
 app.N4_jokes = []
 app.N2V2_jokes = []
 app.NA_jokes = []
