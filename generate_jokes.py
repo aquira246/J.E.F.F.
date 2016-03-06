@@ -38,8 +38,8 @@ def N4_joke(d1, d2, w1, w2):
 # d1 is an verb synonym for w1
 # d2 is an noun synonym for w2
 def N2V2_joke(d1, d2, w1, w2):
-    return "Why did someone " + d1 + " " + indefinite_article(d2) + d2 + "? " + \
-           "So they could " + w1 + " " + indefinite_article(w2) + w2 + "."
+    return "Why did someone " + d2 + " " + indefinite_article(d1) + d1 + "? " + \
+           "So they could " + w2 + " " + indefinite_article(w1) + w1 + "."
 
 # both are nouns, but w1 has a synonym that's an adjective
 def N3A_joke(d1, d2, w1, w2):
