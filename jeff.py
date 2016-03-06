@@ -39,12 +39,12 @@ def getJoke():
     if joke_type == 2:
         if not app.NA_jokes:
             app.NA_jokes = generateNA(app.CACHE_SIZE)
-        return NA_jokes.pop()
+        return app.NA_jokes.pop()
 
     if joke_type == 3:
         if not app.N2_jokes:
             app.N2_jokes = generateN2(app.CACHE_SIZE)
-        return N2_jokes.pop()
+        return app.N2_jokes.pop()
 
 @bottle.route('/')
 def index():
