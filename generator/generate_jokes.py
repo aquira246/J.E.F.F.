@@ -9,7 +9,7 @@ from .graph_query import query_graph
 def indefinite_article(w):
     if (len(w) == 0):
         return ""
-    if w.lower().startswith("a ") or w.lower().startswith("an "):
+    if w.lower().startswith("a ") or w.lower().startswith("an ") or w.lower().startswith("the "):
         return ""
     return "an " if w.lower()[0] in list('aeiou') else "a "
 
