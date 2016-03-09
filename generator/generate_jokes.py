@@ -65,7 +65,7 @@ def NA_joke(d1, d2, w1, w2):
 
     random.shuffle(defs1)
     random.shuffle(defs2)
-    return "What do you call " + indefinite_article(defs1[0]) + defs1[0] + " " + defs2[0] + "? " + \
+    return "What do you call " + indefinite_article(defs2[0]) + defs2[0] + " " + defs1[0] + "? " + \
         camel(indefinite_article(w1)) + w1 + " " + w2 + "."
 
 
