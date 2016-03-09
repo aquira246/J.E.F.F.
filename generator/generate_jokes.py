@@ -150,7 +150,7 @@ def generateNA(jokeCount=1):
     jokes = []
     queries = query_graph(graph_query.NA, limit=jokeCount, offset=0)
     for q in queries:
-        jokes.append(NA_joke(q[1], q[3], q[0], q[2]))
+        jokes.append(NA_joke(q[3], q[1], q[2], q[0]))
 
     return jokes
 
