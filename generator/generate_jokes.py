@@ -223,7 +223,7 @@ def generateNA(jokeCount=1):
 
 
 def randomJoke():
-    joke_type = 2 #random.randint(0,3)
+    joke_type = random.randint(0,3)
 
     if joke_type == 0:
         jokes = generateN4(1)
