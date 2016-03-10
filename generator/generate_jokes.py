@@ -6,6 +6,65 @@ import re
 import graph_query
 from .graph_query import query_graph
 
+prepositions = set(["about",
+"above",
+"across",
+"after",
+"against",
+"along",
+"among",
+"around",
+"as",
+"at",
+"because",
+"before",
+"behind",
+"being",
+"below",
+"beneath",
+"beside",
+"between",
+"beyond",
+"by",
+"concerning",
+"despite",
+"down",
+"during",
+"except",
+"for",
+"from",
+"in",
+"inside",
+"instead",
+"into",
+"like",
+"near",
+"next",
+"of",
+"off",
+"on",
+"out",
+"outside",
+"over",
+"past",
+"regarding",
+"round",
+"since",
+"through",
+"throughout",
+"till",
+"to",
+"toward",
+"under",
+"underneath",
+"unlike",
+"until",
+"up",
+"upon",
+"with",
+"within",
+"without"])
+
 def indefinite_article(w):
     if (len(w) == 0):
         return ""
@@ -17,6 +76,8 @@ def indefinite_article(w):
 def camel(s):
     return s[0].upper() + s[1:]
 
+def isPreposition(s):
+    return s in prepositions
 
 # w1 is an adjective and w2 is a noun.
 # d1 is an adjective synonym for w1
@@ -65,7 +126,13 @@ def NA_joke(d1, d2, w1, w2):
 
     random.shuffle(defs1)
     random.shuffle(defs2)
-    return "What do you call " + indefinite_article(defs2[0]) + defs2[0] + " " + defs1[0] + "? " + \
+
+    defs1_tokenized = defs1[0].split()
+    #longer definitions are more likely to be prepositions
+    if len(defs1_tokenized) > 3 or isPreposition(defs1_tokenized[0]):
+        return "What do you call " + indefinite_article(defs2[0]) + defs2[0] + " " + defs1[0] + "? " + \
+            camel(indefinite_article(w1)) + w1 + " " + w2 + "."
+    return "What do you call " + indefinite_article(defs1[0]) + defs1[0] + " " + defs2[0] + "? " + \
         camel(indefinite_article(w1)) + w1 + " " + w2 + "."
 
 
@@ -156,7 +223,7 @@ def generateNA(jokeCount=1):
 
 
 def randomJoke():
-    joke_type = random.randint(0,3)
+    joke_type = 2 #random.randint(0,3)
 
     if joke_type == 0:
         jokes = generateN4(1)
