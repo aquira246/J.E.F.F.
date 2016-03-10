@@ -76,14 +76,20 @@ def indefinite_article(w):
 def camel(s):
     return s[0].upper() + s[1:]
 
-def isPreposition(s):
-    return s in prepositions
+def removeArticle(s):
+    if s.startswith("a "):
+        return s[2:]
+    elif s.startswith("an "):
+        return s[3:]
+    elif s.startswith("the "):
+        return s[4:]
+    return s
 
 # w1 is an adjective and w2 is a noun.
 # d1 is an adjective synonym for w1
 # d2 is an noun synonym for w2
 def N2A2_joke(d1, d2, w1, w2):
-    return "What do you call " + indefinite_article(d1) + d1 + " " + d2 + "? " + \
+    return "What do you call " + indefinite_article(d1) + d1 + " " + removeArticle(d2) + "? " + \
         camel(indefinite_article(w1)) + w1 + " " + w2 + "."
 
 
@@ -129,11 +135,11 @@ def NA_joke(d1, d2, w1, w2):
 
     defs1_tokenized = defs1[0].split()
     #longer definitions are more likely to be prepositions
-    if len(defs1_tokenized) > 3 or isPreposition(defs1_tokenized[0]):
+    if len(defs1_tokenized) > 3 or defs1_tokenized[0] in prepositions:
         return "What do you call " + indefinite_article(defs2[0]) + defs2[0] + " " + defs1[0] + "? " + \
             camel(indefinite_article(w1)) + w1 + " " + w2 + "."
-    return "What do you call " + indefinite_article(defs1[0]) + defs1[0] + " " + defs2[0] + "? " + \
-        camel(indefinite_article(w1)) + w1 + " " + w2 + "."
+    return "What do you call " + indefinite_article(defs1[0]) + defs1[0] + " " + removeArticle(defs2[0]) + \
+            "? " + camel(indefinite_article(w1)) + w1 + " " + w2 + "."
 
 
 # w1 and w2 are both nouns
