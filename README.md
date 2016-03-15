@@ -24,6 +24,8 @@ Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute
 #Running via CLI:
 `python3 get_random_joke.py`
 
+*Prints a random joke to stdout.*
+
 #Installing web server:
 1. Make sure apache has wsgi enabled
 2. Symlink the JEFF directory under `/var/www` or other relevant web directory
