@@ -38,3 +38,10 @@ See `algorithms.txt` for details on our knowledgebase design and joke generation
    - Webserver should return a random joke in text string format
    - Note that the first request will take a few minutes as the webserver initializes with jokes
 
+#Files
+- User Manual: This Document (README.md)
+- Source Code: \*.py
+- Log File: log.txt
+- Description of Algorithms Used: algorithms.txt
+- PowerPoint Slides: JEFF Presentation.pdf
+- Software Artifact: puns.txt
