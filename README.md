@@ -10,16 +10,16 @@ Ritchie, Graeme, Ruli Manurung, Helen Pain, Annalu Waller, Rolf Black, and Dave 
 Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute for Communicating and Collaborative Systems (2003).
 
 #Dependecies:
-. Python 3
-  . selenium
-  . BeautifulSoup
-  . requests
-  . ujson
-  . NLTK
-    . wordnet
-    . averaged_perceptron_tagger
-  . bottle (OPTIONAL: for web server)
-. Apache (OPTIONAL: for web server)
+- Python 3
+  - selenium
+  - BeautifulSoup
+  - requests
+  - ujson
+  - NLTK
+    - wordnet
+    - averaged_perceptron_tagger
+  - bottle (OPTIONAL: for web server)
+- Apache (OPTIONAL: for web server)
 
 #Running:
 CLI: python3 get_random_joke.py
