@@ -9,7 +9,7 @@ Ritchie, Graeme, Ruli Manurung, Helen Pain, Annalu Waller, Rolf Black, and Dave 
 
 Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute for Communicating and Collaborative Systems (2003).
 
-#Dependecies:
+#Dependencies:
 - Python 3
   - selenium
   - BeautifulSoup
@@ -21,8 +21,8 @@ Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute
   - bottle (OPTIONAL: for web server)
 - Apache (OPTIONAL: for web server)
 
-#Running:
-CLI: python3 get_random_joke.py
+#Running via CLI:
+python3 get_random_joke.py
 
 #Installing for web server:
 1. Make sure apache has wsgi enabled
