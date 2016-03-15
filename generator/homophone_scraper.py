@@ -6,6 +6,7 @@ import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
+# Gets the largest page number from the given page
 def getMaxPageNumber(bsSource):
     # Pagnination keeps track of the page numbers
     pagination = bsSource.find('ul', {"class" : "pagination"})
@@ -19,10 +20,15 @@ def getMaxPageNumber(bsSource):
     # Get second to last one because last one is next page
     return int(paginationList[-2].text)
 
+# Gets all the homophones for a given letter from www.homophones.com
+# Returns a list of all the homophones for the letter
 def getAllHomophonesFromLetter(browser, letter):
     homophonesPerLetter = []
 
+    # There is always a single page for a letter
     pageNumber = 1
+
+    # Go unitl all of pages have been scraped
     while True:
         url = "http://www.homophone.com/search?page=" + str(pageNumber) + \
          "&q=" + str(letter)
@@ -60,6 +66,8 @@ def getAllHomophonesFromLetter(browser, letter):
         time.sleep(1)
     return homophonesPerLetter
 
+# Create browser and query for each letter of the alphabet
+# Returns a list of homohpones for each letter of the alphabet
 def getHomophonesFromWebpage():
     homophones = []
     browser = webdriver.Firefox()
@@ -68,14 +76,17 @@ def getHomophonesFromWebpage():
     for letter in list(string.ascii_lowercase):
         homophones.extend(getAllHomophonesFromLetter(browser, letter))
 
+        # Delay so we are not mean to their servers
         time.sleep(1)
     browser.close()
     return homophones
 
+# Print out in JSON form
 def main():
     print json.dumps(getHomophonesFromWebpage())
     return 0
 
+# Call main
 if __name__ == "__main__":
     sys.exit(main())
     
