@@ -11,9 +11,9 @@ Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute
 
 #Dependencies:
 - Python 3
-  - selenium
-  - BeautifulSoup
-  - requests
+  - selenium (OPTIONAL: for web scrapping)
+  - BeautifulSoup (OPTIONAL: for web scrapping)
+  - requests (OPTIONAL: for web scrapping)
   - ujson
   - NLTK
     - wordnet
