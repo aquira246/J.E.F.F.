@@ -9,6 +9,8 @@ Ritchie, Graeme, Ruli Manurung, Helen Pain, Annalu Waller, Rolf Black, and Dave 
 
 Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute for Communicating and Collaborative Systems (2003).
 
+See `algorithms.txt` for details on our knowledgebase design and joke generation.
+
 #Dependencies:
 - Python 3
   - selenium (OPTIONAL: for web scrapping)
