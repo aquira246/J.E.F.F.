@@ -9,6 +9,8 @@ Ritchie, Graeme, Ruli Manurung, Helen Pain, Annalu Waller, Rolf Black, and Dave 
 
 Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute for Communicating and Collaborative Systems (2003).
 
+See `algorithms.txt` for details on our knowledgebase design and joke generation.
+
 #Dependencies:
 - Python 3
   - selenium (OPTIONAL: for web scrapping)
@@ -24,6 +26,8 @@ Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute
 #Running via CLI:
 `python3 get_random_joke.py`
 
+*Prints a random joke to stdout.*
+
 #Installing web server:
 1. Make sure apache has wsgi enabled
 2. Symlink the JEFF directory under `/var/www` or other relevant web directory
@@ -34,3 +38,10 @@ Ritchie, Graeme. "The JAPE riddle generator: technical specification." Institute
    - Webserver should return a random joke in text string format
    - Note that the first request will take a few minutes as the webserver initializes with jokes
 
+#Files
+- User Manual: This Document (README.md)
+- Source Code: \*.py
+- Log File: log.txt
+- Description of Algorithms Used: algorithms.txt
+- PowerPoint Slides: JEFF Presentation.pdf
+- Software Artifact: puns.txt

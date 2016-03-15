@@ -1,0 +1,22 @@
+Andrew Acosta:
+	Research for Final Project Idea: 10 hours
+   	Finding base source code
+      Finding pun algorithms 
+   Built the base code for J.E.F.F. to 
+   generate puns from the knowledge base.: 5 hours
+   Generated synsets from WordNet.: 5 hours
+   Documentation: 1 hours
+   
+
+Andrew Wang:
+	Research for Final Project Idea: 10 hours
+   Found homophones.com and scraped it: 20 hours 
+   Documentation: 1 hours
+
+Sam Wu:
+	Research for Final Project Idea: 10 hours
+   Built knowledge base from homophones and synsets: 10 hours
+   Setup server: 10 hours
+   Documentation: 1 hours
+
+Playing with J.E.F.F. and laughing at puns: Priceless
