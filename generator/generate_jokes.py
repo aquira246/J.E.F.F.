@@ -66,6 +66,7 @@ prepositions = set(["about",
 "without"])
 
 def indefinite_article(w):
+    """Generate an indefinite article for the given phrase: a, an, or empty string"""
     if (len(w) == 0):
         return ""
     if w.lower().startswith("a ") or w.lower().startswith("an ") or w.lower().startswith("the "):
@@ -74,9 +75,11 @@ def indefinite_article(w):
 
 
 def camel(s):
+    """Camel case the given string"""
     return s[0].upper() + s[1:]
 
 def removeArticle(s):
+    """Remove the article in the beginning of the given phrase"""
     if s.startswith("a "):
         return s[2:]
     elif s.startswith("an "):
@@ -229,6 +232,7 @@ def generateNA(jokeCount=1):
 
 
 def randomJoke():
+    """Get a random joke of a random type of either N4, N2V2, NA, or N2"""
     joke_type = random.randint(0,3)
 
     if joke_type == 0:
@@ -263,6 +267,7 @@ def randomJoke():
 
 
 def generateJokeFile(filename="puns.txt", jokeCount=10):
+    """Export jokeCount number of jokes for each type to a file of the given name"""
     wf = open(filename, 'w')
 
     # get all N2A2 jokes

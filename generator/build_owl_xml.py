@@ -14,6 +14,8 @@ def queueSynonymObjToAdd(word):
     return word.replace(" ", "_")
 
 def getWordObj(word):
+    """Get the word object for a given word from objectByLabel.
+    Create the object if it does not exist and queue its synonyms to be added."""
     label = word.replace(" ", "_")
     wordObj = objectByLabel.get(label, {})
     if label not in objectByLabel:
@@ -49,10 +51,12 @@ def getWordObj(word):
 
     return wordObj
 
+#read in homophones list assuming each line is a group of homophones
 with open("homophones.csv", "r") as homoFile:
     for line in homoFile:
         homoGroup = (word.strip() for word in line.split(",") if word.strip())
         homoObjGroup = [getWordObj(homo_word) for homo_word in homoGroup]
+        #link each word in the group in pairs
         for homoA, homoB in itertools.combinations(homoObjGroup, 2):
             homoA["homophones"].add(homoB["label"])
             homoB["homophones"].add(homoA["label"])

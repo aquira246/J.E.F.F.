@@ -19,6 +19,7 @@ QUERY_PREFIX="""PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 #graph
 g = None
 
+#try to load our saved graph from pickle file, if it does not exist then recreate it
 try:
     with open(GRAPH_PICKLE_PATH, "rb") as graph_pickle:
         g = pickle.load(graph_pickle)
@@ -186,5 +187,6 @@ N4 = QUERY_PREFIX + """
 #use re.split("\s*[;\|]\s*", x) for splitting definitions
 
 def query_graph(query_string, limit=10, offset=0):
+    """Perform the given query with substituted parameters and substitute underscores with space."""
     return [tuple(x.replace("_", " ") for x in row) for row in g.query(query_string % (limit, offset))]
 

@@ -3,6 +3,7 @@ import bottle
 from generator import generateN4, generateN2V2, generateNA, generateN2
 import random
 
+#initialize our joke cache with jokes
 app = bottle.default_app()
 app.CACHE_SIZE = 50
 app.N4_jokes = generateN4(app.CACHE_SIZE)
@@ -11,6 +12,7 @@ app.NA_jokes = generateNA(app.CACHE_SIZE)
 app.N2_jokes = generateN2(app.CACHE_SIZE)
 
 def getJoke():
+    """Randomly serve a joke from our cache. Refill a type if it is empty."""
     app = bottle.default_app()
     joke_type = random.randint(0,3)
     if joke_type == 0:
