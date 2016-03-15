@@ -2,7 +2,7 @@ import nltk
 from nltk.corpus import wordnet as wn
 
 class wordCollection(object):
-    """docstring for wordCollection"""
+    """a collection of possible joke material for a word"""
 
     def __init__(self, word, pos, hypernyms, hyponyms, definition):
         super(wordCollection, self).__init__()
@@ -13,6 +13,8 @@ class wordCollection(object):
         self.definition = definition
 
 
+# takes in a synset and prints out the word, hypernyms, hyponyms, pos, and
+# definition for each word in the synset
 def printSyns(syns):
     for s in syns:
         print("word: ", s.word)
@@ -31,21 +33,26 @@ def printSyns(syns):
         print("\n")
 
 
+# create a collection of wordcollections for a passed in word
 def createSyns(word):
     ret = []
-    # i = 0
-    for syn in wn.synsets(word):
-        # if (i == 0):
-        #     print(dir(syn), "\n")
-        #     i += 1
 
+    # go through each synonym in the synset
+    for syn in wn.synsets(word):
+
+        # store the name
         name = syn.name().split(".")[0]
+
+        # filter out strange synonyms
         if word in name:
+
+            # collect the hypernyms
             hypernyms = []
             for h in syn.hypernyms():
                 h_name = h.name().split(".")
                 hypernyms.append( (h_name[0].strip(), h_name[1].strip()) )
 
+            # collect the hyponyms
             hyponyms = []
             for h in syn.hyponyms():
                 h_name = h.name().split(".")
@@ -53,8 +60,5 @@ def createSyns(word):
 
             ret.append(wordCollection(name, syn.pos(), hypernyms, hyponyms, syn.definition()))
 
+    # return the collection of wordcollections
     return ret
-
-#printSyns(createSyns("cheese"))
-# createSyns("dog")
-#printSyns(createSyns("rock"))
