@@ -1,0 +1,27 @@
+Our Knowledgebase:
+We created a knowledgebase of words in protege by scraping a homophone website for words (http://www.homophone.com/), definitions, and parts of speech (POS). We then used WordNet to find synonyms of the words. We then stored our words in an owl file which can be accessed in protege. Words are connected with 2 relationships: isHomophoneTo which connects 2 homophones and isSynonymTo which connects synonyms.  Lastly, each word is an individual that is part of one of three classes: adjective, verb, and noun. This corresponds to their POS.
+
+We used the rdflib library in python to send SPARQL queries to our knowledge base. We then take the results and use them to generate 7 kinds of jokes.
+
+Joke Templates:
+N2A2: What do you call a/an [adjective synonym] [noun synonym]? "
+       A/An [adjective] [noun].
+NA: What do you call a/an [adjective definition] [noun definition]? "
+       A/An [adjective] [noun].
+
+N4: When is a/an [noun1 synonym that is a noun] like a/an [noun2 synonym that is a noun] ?
+          When it is a/an [noun2].
+
+N2: When is a/an [noun1 definition] like a/an [noun2 definition] ?
+          When it is a/an [noun2].
+
+N2V2: Why did someone [verb synonym that is a verb] a [noun synonym that is a noun]?
+So they could [verb] the [noun].
+
+N2AN: When is a/an [noun synonym that is a noun] like a/an [adjective synonym that is a noun] ?
+          When it is a/an [adjective] [noun].
+
+N3A: What is a/an  [noun2 synonym that is a adjective] [noun1 synonym that is a noun] ?
+          A/An [noun2].
+
+
